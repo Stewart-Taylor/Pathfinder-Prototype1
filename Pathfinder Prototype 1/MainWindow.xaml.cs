@@ -16,15 +16,13 @@ namespace Pathfinder_Prototype_1
 {
     public partial class MainWindow : Window
     {
-
-        private ElevationLoader elevationLoader;
-        private SlopeModel slopeModel;
-        private HazardModel hazardModel;
-
+        PathfinderController pathfinder;
 
         public MainWindow()
         {
             InitializeComponent();
+            cmb_slopeType.SelectedIndex = 2;
+            pathfinder = new PathfinderController();
         }
 
 
@@ -32,60 +30,39 @@ namespace Pathfinder_Prototype_1
 
         private void btn_load_Click(object sender, RoutedEventArgs e)
         {
-            loadModel();
+            String path = "Models//model1_w512_h0.1_v0.01.ppm";
+           // String path = "Models//model2_w1024_h0.1_v0.01.ppm";
+
+            pathfinder.loadElevationModel(path);
+            img_height.Source = pathfinder.getElevationModelImage();
         }
 
-        private void loadModel()
-        {
-            //  elevationLoader = new ElevationLoader("Models//test.ppm");
-            elevationLoader = new ElevationLoader("Models//model1_w512_h0.1_v0.01.ppm");
-          //  elevationLoader = new ElevationLoader("Models//model2_w1024_h0.1_v0.01.ppm");
 
-            img_height.Source = elevationLoader.getImageSource();
-            //.Source = loader.getImageSource();
-
-
-          //  elevationModel = new ElevationModel(loader.getBitmap());
-        }
 
         private void btn_slope_Click(object sender, RoutedEventArgs e)
         {
-            loadSlopeModel();
-        }
-
-
-        private void btn_hazard_Click(object sender, RoutedEventArgs e)
-        {
-            loadHazardModel();
-        }
-
-
-        private void loadSlopeModel()
-        {
-            string cmbvalue = "";
+            string slopeType = "";
 
             System.Windows.Controls.ComboBoxItem curItem = ((System.Windows.Controls.ComboBoxItem)cmb_slopeType.SelectedItem);
 
             if (curItem != null)
             {
-                cmbvalue = curItem.Content.ToString();
+                slopeType = curItem.Content.ToString();
             }
 
-
-
-            slopeModel = new SlopeModel(elevationLoader.getHeightMap(), cmbvalue);
-
-            img_slope.Source = slopeModel.getSlopeModelImage();
+            pathfinder.loadSlopeModel(slopeType);
+            img_slope.Source = pathfinder.getSlopeModelImage();
         }
 
 
-
-        private void loadHazardModel()
+        private void btn_hazard_Click(object sender, RoutedEventArgs e)
         {
-            hazardModel = new HazardModel(slopeModel.getSlopeModel(), 0.1f, 1.0f);
-
-            img_hazard.Source = hazardModel.getHazardModelImage();
+            pathfinder.loadHazardModel(10);
+            img_hazard.Source = pathfinder.getHazardModelImage();
         }
+
+
+       
 
     }
 }
