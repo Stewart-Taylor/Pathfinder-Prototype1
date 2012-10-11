@@ -11,18 +11,164 @@ namespace Pathfinder_Prototype_1
 {
     class HazardModel
     {
-          private float sectorSize = 1f;
+
+        private int sectorSize = 8;
+          private float distanceUnit;
 
         private float[,] hazardModel;
         private float[,] slopeModel;
 
         private Bitmap hazardBitmap;
 
+        private int slopeWidth;
+        private int slopeHeight;
 
-        public HazardModel(float[,] slope , float chunkSize , float hazardSize)
+        private int width;
+        private int height;
+
+
+        public HazardModel(float[,] slope , float distanceUnitT , float hazardSectionSizeT)
         {
             slopeModel = slope;
 
+            distanceUnit = distanceUnitT;
+            sectorSize = 10;
+
+            slopeWidth = slope.GetLength(0);
+            slopeHeight = slope.GetLength(1);
+
+            generateHazardModel();
+            generateHazardImage();
+        }
+
+
+
+        private void generateHazardModel()
+        {
+            width = slopeWidth / sectorSize;
+            height = width; // change its bad
+            hazardModel = new float[width, height];
+
+            int slopeX = 0;
+            int slopeY = 0;
+
+            for (int x = 0; x < width; x++)
+            {
+                for (int y = 0; y < height; y++)
+                {
+                    float high = slopeModel[slopeX, slopeY];
+
+
+                    for (int a = 0; a < sectorSize; a++)
+                    {
+                        for (int b = 0; b < sectorSize; b++)
+                        {
+                            if (high < slopeModel[slopeX + a, slopeY + b])
+                            {
+                                high = slopeModel[slopeX + a, slopeY + b]; 
+                            }
+                        }
+                    }
+
+                    hazardModel[x, y] = high;
+
+                    slopeY += sectorSize;
+                }
+                slopeY = 0;
+                slopeX += sectorSize;
+            }
+
+
+
+        }
+
+
+
+        private float getHazardSectorValue(int x, int y)
+        {
+            float value = 0;
+
+            value = slopeModel[x, y];
+
+            return value;
+        }
+
+        private void generateHazardImage()
+        {
+
+            Bitmap bitmap = new Bitmap(slopeWidth, slopeHeight);
+
+            int slopeX = 0;
+            int slopeY = 0;
+
+
+                for (int x = 0; x < width; x++)
+                {
+                    for (int y = 0; y < height; y++)
+                    {
+                        System.Drawing.Color tempColor = getHazardColorValue(hazardModel[x, y]);
+
+
+
+                        bitmap.SetPixel(slopeX, slopeY, tempColor);
+                        for(int a = 0 ;  a < sectorSize ; a++)
+                        {
+                            for(int b = 0 ; b < sectorSize ; b++)
+                            {
+                                bitmap.SetPixel(slopeX +a, slopeY +b, tempColor);
+                            }
+                        }
+
+                        
+
+                        slopeY += sectorSize;
+                    }
+                    slopeY = 0;
+                    slopeX += sectorSize;
+                }
+
+         
+
+            hazardBitmap = bitmap;
+        
+
+        }
+
+        private System.Drawing.Color getHazardColorValue(float gradient)
+        {
+            System.Drawing.Color color = System.Drawing.Color.White;
+
+            gradient = Math.Abs(gradient);
+
+            float green = 255;
+            float red = 255;
+            float blue = 0;
+
+
+
+            if (gradient <= 1f)
+            {
+
+                red = (1f - gradient) * 255;
+
+            }
+            else if (gradient <= 3f)
+            {
+                float percent = (gradient) / (3f);
+
+                green = (1f - percent) * 255;
+            }
+            else
+            {
+                green = 0;
+            }
+
+
+
+
+            color = System.Drawing.Color.FromArgb(255, (int)red, (int)green, (int)blue);
+
+            return color;
         }
 
 
