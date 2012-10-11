@@ -57,6 +57,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="HazardModel.cs" />
+    <Compile Include="Pathfinder.cs" />
     <Compile Include="PathfinderController.cs" />
     <Compile Include="SlopeAlgrotithm.cs" />
     <Compile Include="SlopeAverage.cs" />

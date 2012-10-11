@@ -11,7 +11,7 @@ namespace Pathfinder_Prototype_1
         private ElevationLoader elevationLoader;
         private SlopeModel slopeModel;
         private HazardModel hazardModel;
-
+        private Pathfinder pathfinder;
 
 
         public PathfinderController()
@@ -32,10 +32,14 @@ namespace Pathfinder_Prototype_1
             slopeModel = new SlopeModel(elevationLoader.getHeightMap(), slopeType);
         }
 
-
         public void loadHazardModel(int chunkSize)
         {
             hazardModel = new HazardModel(slopeModel.getSlopeModel(), chunkSize);
+        }
+
+        public void generatePath()
+        {
+            pathfinder = new Pathfinder(hazardModel.getHazardModel());
         }
 
         public ImageSource getElevationModelImage()
@@ -51,6 +55,11 @@ namespace Pathfinder_Prototype_1
         public ImageSource getHazardModelImage()
         {
             return hazardModel.getHazardModelImage();
+        }
+
+        public ImageSource getPathImage()
+        {
+            return pathfinder.getPathImage();
         }
 
     }

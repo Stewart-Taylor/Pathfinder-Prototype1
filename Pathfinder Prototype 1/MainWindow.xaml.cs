@@ -61,6 +61,12 @@ namespace Pathfinder_Prototype_1
             img_hazard.Source = pathfinder.getHazardModelImage();
         }
 
+        private void btn_path_Click(object sender, RoutedEventArgs e)
+        {
+            pathfinder.generatePath();
+            img_path.Source = pathfinder.getPathImage();
+        }
+
 
        
 

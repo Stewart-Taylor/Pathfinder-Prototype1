@@ -39,6 +39,11 @@ namespace Pathfinder_Prototype_1
 
 
 
+        public float[,] getHazardModel()
+        {
+            return hazardModel;
+        }
+
         private void generateHazardModel()
         {
             width = slopeWidth / sectorSize;

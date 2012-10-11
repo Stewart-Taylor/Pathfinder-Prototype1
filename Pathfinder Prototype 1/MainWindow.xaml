@@ -17,9 +17,11 @@
                 <ComboBoxItem Content="Horn"  />
             </ComboBox>
             <Button x:Name="btn_hazard" Content="Hazard" Margin="8,213.75,8,0" VerticalAlignment="Top" Click="btn_hazard_Click" />
+            <Button x:Name="btn_path" Content="Path" Margin="8,257.75,8,0" VerticalAlignment="Top" Click="btn_path_Click" />
         </Grid>
     	<Image x:Name="img_height" Height="256" Margin="8,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="256" Stretch="Fill" d:LayoutOverrides="HorizontalAlignment"/>
     	<Image x:Name="img_slope" Height="256" Margin="299.25,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="256" Stretch="Fill"/>
     	<Image x:Name="img_hazard" Height="256" Margin="589.25,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="256" Stretch="Fill"/>
+    	<Image x:Name="img_path" Margin="8,268,0,148" HorizontalAlignment="Left" Width="256" Stretch="Fill" d:LayoutOverrides="HorizontalAlignment"/>
     </Grid>
 </Window>
