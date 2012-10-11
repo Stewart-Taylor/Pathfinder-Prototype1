@@ -19,11 +19,7 @@ namespace Pathfinder_Prototype_1
         private float[,] hazardModel;
 
 
-        public struct Node
-        {
-            public int x;
-            public int y;
-        }
+        private List<Point> pathNodes;
 
         public Pathfinder(float[,] hazardModelT)
         {
@@ -35,6 +31,11 @@ namespace Pathfinder_Prototype_1
             findPath();
             generatePathImage();
         }
+
+ public List<Point> getPath()
+{
+return pathNodes;
+}
 
 
 
@@ -55,8 +56,6 @@ namespace Pathfinder_Prototype_1
             Bitmap bitmap = new Bitmap(width, height);
 
             
-
-
             for (int x = 0; x < width; x++)
             {
                 for (int y = 0; y < height; y++)
