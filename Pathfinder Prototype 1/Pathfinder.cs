@@ -20,7 +20,7 @@ namespace Pathfinder_Prototype_1
 
         List<PathNode> pathNodes = new List<PathNode>();
 
-        private List<Point> pathNodes;
+      
 
         public Pathfinder(float[,] hazardModelT , int startX , int startY , int targetX , int targetY)
         {
@@ -33,11 +33,7 @@ namespace Pathfinder_Prototype_1
             generatePathImage();
         }
 
- public List<Point> getPath()
-{
-return pathNodes;
-}
-
+ 
 
 
         private void findPath(int startX , int startY , int targetX , int targetY)
