@@ -18,17 +18,18 @@ namespace Pathfinder_Prototype_1
         private Bitmap pathBitmap;
         private float[,] hazardModel;
 
+        List<PathNode> pathNodes = new List<PathNode>();
 
         private List<Point> pathNodes;
 
-        public Pathfinder(float[,] hazardModelT)
+        public Pathfinder(float[,] hazardModelT , int startX , int startY , int targetX , int targetY)
         {
             hazardModel = hazardModelT;
 
             width = hazardModel.GetLength(0);
             height = hazardModel.GetLength(1);
 
-            findPath();
+            findPath(startX , startY , targetX , targetY);
             generatePathImage();
         }
 
@@ -39,9 +40,19 @@ return pathNodes;
 
 
 
-        private void findPath()
+        private void findPath(int startX , int startY , int targetX , int targetY)
         {
+            SearchAlgorithm aStar = new AStar(hazardModel , startX , startY , targetX , targetY);
 
+            
+
+            pathNodes = aStar.getPath();
+
+
+
+
+
+            
 
         }
 
@@ -60,7 +71,7 @@ return pathNodes;
             {
                 for (int y = 0; y < height; y++)
                 {
-                    System.Drawing.Color tempColor = getPathColorValue(hazardModel[x, y]);
+                    System.Drawing.Color tempColor = getPathColorValue(hazardModel[x, y] , x , y);
 
                     bitmap.SetPixel(x, y, tempColor);
                  
@@ -72,7 +83,7 @@ return pathNodes;
         }
 
 
-        private System.Drawing.Color getPathColorValue(float gradient)
+        private System.Drawing.Color getPathColorValue(float gradient , int x , int y)
         {
             System.Drawing.Color color = System.Drawing.Color.White;
 
@@ -98,6 +109,17 @@ return pathNodes;
             else
             {
                 green = 0;
+            }
+
+            foreach (PathNode n in pathNodes)
+            {
+                if ((n.x == x) && (n.y == y))
+                {
+                    red = 0;
+                    green = 0;
+                    blue = 255;
+                }
+
             }
 
 

@@ -39,7 +39,7 @@ namespace Pathfinder_Prototype_1
 
         public void generatePath()
         {
-            pathfinder = new Pathfinder(hazardModel.getHazardModel());
+            pathfinder = new Pathfinder(hazardModel.getHazardModel() , 0 , 0 , 32 , 22);
         }
 
         public ImageSource getElevationModelImage()
