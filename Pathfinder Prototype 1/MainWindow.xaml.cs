@@ -25,8 +25,8 @@ namespace Pathfinder_Prototype_1
             pathfinder = new PathfinderController();
 
 
-            String path = "Models//model1_w512_h0.1_v0.01.ppm";
-            // String path = "Models//model2_w1024_h0.1_v0.01.ppm";
+           String path = "Models//model1_w512_h0.1_v0.01.ppm";
+        //     String path = "Models//model2_w1024_h0.1_v0.01.ppm";
 
             pathfinder.loadElevationModel(path);
             img_height.Source = pathfinder.getElevationModelImage();

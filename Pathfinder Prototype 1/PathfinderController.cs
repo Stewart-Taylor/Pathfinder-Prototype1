@@ -39,7 +39,8 @@ namespace Pathfinder_Prototype_1
 
         public void generatePath()
         {
-            pathfinder = new Pathfinder(hazardModel.getHazardModel() , 0 , 0 , 32 , 22);
+            Random r = new Random();
+            pathfinder = new Pathfinder(hazardModel.getHazardModel(), 0, 0, r.Next(hazardModel.getHazardModel().GetLength(0)), r.Next(hazardModel.getHazardModel().GetLength(1)));
         }
 
         public ImageSource getElevationModelImage()

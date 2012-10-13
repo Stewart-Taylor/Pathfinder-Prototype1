@@ -17,7 +17,10 @@ namespace Pathfinder_Prototype_1
 
         public class Node
         {
-           public int f;
+            public int f()
+            {
+                return g + h;
+            }
            public int g;
            public int h;
            public int x;
@@ -61,7 +64,7 @@ namespace Pathfinder_Prototype_1
                     open.Sort(
                     delegate(Node x, Node y)
                     {
-                        return x.f - y.f;
+                        return x.f() - y.f();
                     });
 
 
@@ -217,7 +220,7 @@ namespace Pathfinder_Prototype_1
             Node newNode = new Node();
             newNode.x = x;
             newNode.y = y;
-            newNode.f = (int)(grid[x, y] * 10);
+            newNode.g = (int)(grid[x, y] * 100);
             newNode.h = estimateDistance(x, y, targetNode);
             newNode.parent = parent;
                 
@@ -289,15 +292,18 @@ namespace Pathfinder_Prototype_1
 
             if (xDistance > yDistance)
             {
-                distance = 14 * yDistance + 10 * (xDistance - yDistance);
+                distance =  yDistance  * (xDistance - yDistance);
             }
             else
             {
-                distance = 14 * xDistance + 10 * (yDistance - xDistance);
+                distance = xDistance  * (yDistance - xDistance);
             }
+
+            distance = (Math.Abs(currentX - target.x) + Math.Abs(currentY - target.y));
 
             return distance;
 
+    
 
         }
 
