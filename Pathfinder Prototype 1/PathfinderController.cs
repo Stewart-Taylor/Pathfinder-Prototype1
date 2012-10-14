@@ -13,6 +13,8 @@ namespace Pathfinder_Prototype_1
         private HazardModel hazardModel;
         private Pathfinder pathfinder;
 
+        private Random r = new Random();
+
 
         public PathfinderController()
         {
@@ -34,18 +36,51 @@ namespace Pathfinder_Prototype_1
 
         public void loadHazardModel(int chunkSize)
         {
-            hazardModel = new HazardModel(slopeModel.getSlopeModel(), chunkSize);
+            try
+            {
+                hazardModel = new HazardModel(slopeModel.getSlopeModel(), chunkSize);
+            }
+            catch (Exception e) { }
         }
 
-        public void generatePath()
+        public void generatePath(int startX, int startY, int targetX, int targetY)
         {
-            Random r = new Random();
-            pathfinder = new Pathfinder(hazardModel.getHazardModel(), 0, 0, r.Next(hazardModel.getHazardModel().GetLength(0)), r.Next(hazardModel.getHazardModel().GetLength(1)));
+            if ((startX + startY + targetX + targetY) == 0)
+            {
+                pathfinder = new Pathfinder(hazardModel.getHazardModel(), 0, 0, r.Next(hazardModel.getHazardModel().GetLength(0)), r.Next(hazardModel.getHazardModel().GetLength(1)));
+            }
+            else
+            {
+                try
+                {
+                    pathfinder = new Pathfinder(hazardModel.getHazardModel(), startX, startY, targetX, targetY);
+                }
+                catch (Exception e) { }
+            }
         }
-
         public ImageSource getElevationModelImage()
         {
             return elevationLoader.getImageSource();
+        }
+
+        public float[,] getElevationModel()
+        {
+            return elevationLoader.getHeightMap();
+        }
+
+        public float[,] getSlopeModel()
+        {
+            return slopeModel.getSlopeModel();
+        }
+
+        public float[,] getHazardModel()
+        {
+            return hazardModel.getHazardModel();
+        }
+
+        public List<PathNode> getPathModel()
+        {
+            return pathfinder.getPath();
         }
 
         public ImageSource getSlopeModelImage()

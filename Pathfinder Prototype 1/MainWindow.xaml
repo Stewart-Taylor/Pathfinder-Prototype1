@@ -10,30 +10,54 @@
     	<Grid.ColumnDefinitions>
     		<ColumnDefinition Width="980.642"/>
     	</Grid.ColumnDefinitions>
-    	<Grid x:Name="grid_height" HorizontalAlignment="Left" Width="256" VerticalAlignment="Top" Height="500" Background="#FFEDF9EF" Margin="-6,0,0,0">
-    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Margin="8,0,0,0"><Run Language="en-gb" Text="Elevation"/></TextBlock>
+    	<Grid x:Name="grid_height" HorizontalAlignment="Left" Width="256" VerticalAlignment="Top" Height="500" Margin="-6,0,0,0">
+    		<TextBlock TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="White" Background="#FF339933" Margin="8,0,0,0" Padding="5,0,0,0"><Run Language="en-gb" Text="Elevation"/></TextBlock>
     		<Image x:Name="img_height" HorizontalAlignment="Left" Width="240" Stretch="Fill" Margin="8,35.923,0,0" Height="240" VerticalAlignment="Top"/>
     		<Button x:Name="btn_load" Content="Load" Margin="187.526,0,0,198.117" VerticalAlignment="Bottom" Click="btn_load_Click" HorizontalAlignment="Left" Width="60.474" />
+    		<Border BorderBrush="Black" BorderThickness="1" d:IsLocked="True"/>
+    		<ComboBox x:Name="cmb_mapType" Margin="8,0,72.474,198.117" VerticalAlignment="Bottom" Text="Map A - 512">
+    			<ComboBoxItem Content="Map A - 512"  />
+    			<ComboBoxItem Content="Map B - 512" />
+    		</ComboBox>
+    		<TextBox x:Name="txt_height" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="8,0,8,8" Height="186.117" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto"/>
     	</Grid>
-    	<Grid x:Name="grid_slope" Margin="250,0,474.642,172" Background="#FFFFC7C7" Width="256">
-    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="en-gb" Text="Slope"/></TextBlock>
+    	<Grid x:Name="grid_slope" Margin="250,0,474.642,172" Width="256">
+    		<TextBlock TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="White" d:LayoutOverrides="Width" Background="#FFE51400" Padding="5,0,0,0"><Run Language="en-gb" Text="Slope"/></TextBlock>
     		<Image x:Name="img_slope" Margin="8,35.923,0,224.077" HorizontalAlignment="Left" Width="240" Stretch="Fill"/>
-    		<ComboBox x:Name="cmb_slopeType" Margin="118,0,8,198.117" VerticalAlignment="Bottom" Text="Average">
+    		<ComboBox x:Name="cmb_slopeType" Margin="8,0,118,198.117" VerticalAlignment="Bottom" Text="Average">
     			<ComboBoxItem Content="Maximum"  />
     			<ComboBoxItem Content="Average" />
     			<ComboBoxItem Content="Horn"  />
     		</ComboBox>
-    		<Button x:Name="btn_slope" Content="Slope" Margin="0,0,8,172.157" VerticalAlignment="Bottom" Click="btn_slope_Click" RenderTransformOrigin="0.663,-1.708" HorizontalAlignment="Right" Width="61" />
+    		<Button x:Name="btn_slope" Content="Slope" Margin="0,0,8,198.117" VerticalAlignment="Bottom" Click="btn_slope_Click" RenderTransformOrigin="0.663,-1.708" HorizontalAlignment="Right" Width="61" />
+    		<Border BorderBrush="Black" BorderThickness="1">
+    			<TextBox x:Name="txt_slope" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="7,0,7,7" Height="186.117" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto"/>
+    		</Border>
     	</Grid>
-    	<Grid x:Name="grid_hazard" HorizontalAlignment="Right" Margin="0,0,218.642,172" Width="256" d:LayoutOverrides="HorizontalAlignment" Background="#FF8ADC8F">
-    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="en-gb" Text="Hazard"/></TextBlock>
+    	<Grid x:Name="grid_hazard" HorizontalAlignment="Right" Margin="0,0,218.642,172" Width="256" d:LayoutOverrides="HorizontalAlignment">
+    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Sector Size" VerticalAlignment="Bottom" Margin="8,0,0,202.116"/>
+    		<TextBlock TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="White" d:LayoutOverrides="Width" Background="#FF1BA1E2" Padding="5,0,0,0"><Run Language="en-gb" Text="Hazard"/></TextBlock>
     		<Image x:Name="img_hazard" Margin="8,35.923,0,224.076" HorizontalAlignment="Left" Width="240" Stretch="Fill" Height="240"/>
     		<Button x:Name="btn_hazard" Content="Hazard" Margin="0,0,8,198.116" VerticalAlignment="Bottom" Click="btn_hazard_Click" HorizontalAlignment="Right" Width="91" />
+    		<Border BorderBrush="Black" BorderThickness="1">
+    			<TextBox x:Name="txt_hazard" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="7,0,7,7" Height="186.117" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto"/>
+    		</Border>
+    		<TextBox x:Name="txt_sectorSize" TextWrapping="Wrap" Text="10" VerticalAlignment="Bottom" Margin="69.733,0,0,196.116" HorizontalAlignment="Left" Width="50"/>
     	</Grid>
-    	<Grid x:Name="grid_path" HorizontalAlignment="Right" Margin="0,0,-37.358,172" Width="256" Background="#FF64EDE4">
-    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="en-gb" Text="Path"/></TextBlock>
-    		<Image x:Name="img_path" Margin="8,31.923,0,228.077" HorizontalAlignment="Left" Width="240" Stretch="Fill"/>
-    		<Button x:Name="btn_path" Content="Path" Margin="0,0,8,202.117" VerticalAlignment="Bottom" Click="btn_path_Click" HorizontalAlignment="Right" Width="74.5" />
+    	<Grid x:Name="grid_path" HorizontalAlignment="Right" Margin="0,0,-37.358,172" Width="256">
+    		<TextBlock TextWrapping="Wrap" Text="Start Y" VerticalAlignment="Bottom" Margin="102.703,0,102.836,202.117" d:LayoutOverrides="Width"/>
+    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="Start X" VerticalAlignment="Bottom" Margin="8,0,0,201.117"/>
+    		<TextBox x:Name="txt_startX" HorizontalAlignment="Left" TextWrapping="Wrap" Text="0" VerticalAlignment="Bottom" Margin="47.15,0,0,199.117" Width="51.553"/>
+    		<TextBox x:Name="txt_startY" HorizontalAlignment="Right" TextWrapping="Wrap" Text="0" VerticalAlignment="Bottom" Margin="0,0,59.833,198.117" Width="50"/>
+    		<TextBlock TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Foreground="White" d:LayoutOverrides="Width" Background="#FF8CBF26" Padding="5,0,0,0"><Run Language="en-gb" Text="Path"/></TextBlock>
+    		<Image x:Name="img_path" Margin="8,35.923,0,240.299" HorizontalAlignment="Left" Width="240" Stretch="Fill" Height="240"/>
+    		<Button x:Name="btn_path" Content="Path" Margin="0,0,8,202.117" VerticalAlignment="Bottom" Click="btn_path_Click" HorizontalAlignment="Right" Width="47.833" />
+    		<Border BorderBrush="Black" BorderThickness="1" d:IsLocked="True"/>
+    		<TextBlock TextWrapping="Wrap" Text="End Y" VerticalAlignment="Bottom" Margin="102.703,0,102.836,176.157" d:LayoutOverrides="Width"/>
+    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" Text="End X" VerticalAlignment="Bottom" Margin="8,0,0,175.157"/>
+    		<TextBox x:Name="txt_endX" HorizontalAlignment="Left" TextWrapping="Wrap" Text="30" VerticalAlignment="Bottom" Margin="47.15,0,0,173.157" Width="51.553"/>
+    		<TextBox x:Name="txt_endY" HorizontalAlignment="Right" TextWrapping="Wrap" Text="28" VerticalAlignment="Bottom" Margin="0,0,59.833,172.157" Width="50"/>
+    		<TextBox x:Name="txt_pathModel" TextWrapping="Wrap" VerticalAlignment="Bottom" Margin="8,0,8,8" Height="160.157" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto"/>
     	</Grid>
     </Grid>
 </Window>
