@@ -2,26 +2,38 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="Pathfinder_Prototype_1.MainWindow"
-        Title="Pathfinder Prototype 1" Height="700" Width="1140.5" ResizeMode="NoResize">
-    <Grid x:Name="grid_main">
+        Title="Pathfinder Prototype 1" Height="527.5" ResizeMode="NoResize" Width="1024.5">
+    <Grid x:Name="grid_main" Margin="0,0,2,0">
+    	<Grid.RowDefinitions>
+    		<RowDefinition Height="672"/>
+    	</Grid.RowDefinitions>
     	<Grid.ColumnDefinitions>
-    		<ColumnDefinition Width="0.766*"/>
-    		<ColumnDefinition Width="0.234*"/>
+    		<ColumnDefinition Width="980.642"/>
     	</Grid.ColumnDefinitions>
-    	<Grid x:Name="grid_panel" Margin="-2,8,8,8" Grid.Column="1">
-    		<Button x:Name="btn_load" Content="Load" Margin="8,8,8,0" VerticalAlignment="Top" Click="btn_load_Click" />
-    		<Button x:Name="btn_slope" Content="Slope" Margin="8,140,8,0" VerticalAlignment="Top" Click="btn_slope_Click" />
-    		<ComboBox x:Name="cmb_slopeType" Margin="8,114.04,1,0" VerticalAlignment="Top" Text="Average">
-                <ComboBoxItem Content="Maximum"  />
-                <ComboBoxItem Content="Average" />
-                <ComboBoxItem Content="Horn"  />
-            </ComboBox>
-            <Button x:Name="btn_hazard" Content="Hazard" Margin="8,213.75,8,0" VerticalAlignment="Top" Click="btn_hazard_Click" />
-            <Button x:Name="btn_path" Content="Path" Margin="8,257.75,8,0" VerticalAlignment="Top" Click="btn_path_Click" />
-        </Grid>
-    	<Image x:Name="img_height" Height="256" Margin="8,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="256" Stretch="Fill" d:LayoutOverrides="HorizontalAlignment"/>
-    	<Image x:Name="img_slope" Height="256" Margin="299.25,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="256" Stretch="Fill"/>
-    	<Image x:Name="img_hazard" Height="256" Margin="589.25,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="256" Stretch="Fill"/>
-    	<Image x:Name="img_path" Margin="8,268,0,148" HorizontalAlignment="Left" Width="256" Stretch="Fill" d:LayoutOverrides="HorizontalAlignment"/>
+    	<Grid x:Name="grid_height" HorizontalAlignment="Left" Width="256" VerticalAlignment="Top" Height="500" Background="#FFEDF9EF" Margin="-6,0,0,0">
+    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24" Margin="8,0,0,0"><Run Language="en-gb" Text="Elevation"/></TextBlock>
+    		<Image x:Name="img_height" HorizontalAlignment="Left" Width="240" Stretch="Fill" Margin="8,35.923,0,0" Height="240" VerticalAlignment="Top"/>
+    		<Button x:Name="btn_load" Content="Load" Margin="187.526,0,0,198.117" VerticalAlignment="Bottom" Click="btn_load_Click" HorizontalAlignment="Left" Width="60.474" />
+    	</Grid>
+    	<Grid x:Name="grid_slope" Margin="250,0,474.642,172" Background="#FFFFC7C7" Width="256">
+    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="en-gb" Text="Slope"/></TextBlock>
+    		<Image x:Name="img_slope" Margin="8,35.923,0,224.077" HorizontalAlignment="Left" Width="240" Stretch="Fill"/>
+    		<ComboBox x:Name="cmb_slopeType" Margin="118,0,8,198.117" VerticalAlignment="Bottom" Text="Average">
+    			<ComboBoxItem Content="Maximum"  />
+    			<ComboBoxItem Content="Average" />
+    			<ComboBoxItem Content="Horn"  />
+    		</ComboBox>
+    		<Button x:Name="btn_slope" Content="Slope" Margin="0,0,8,172.157" VerticalAlignment="Bottom" Click="btn_slope_Click" RenderTransformOrigin="0.663,-1.708" HorizontalAlignment="Right" Width="61" />
+    	</Grid>
+    	<Grid x:Name="grid_hazard" HorizontalAlignment="Right" Margin="0,0,218.642,172" Width="256" d:LayoutOverrides="HorizontalAlignment" Background="#FF8ADC8F">
+    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="en-gb" Text="Hazard"/></TextBlock>
+    		<Image x:Name="img_hazard" Margin="8,35.923,0,224.076" HorizontalAlignment="Left" Width="240" Stretch="Fill" Height="240"/>
+    		<Button x:Name="btn_hazard" Content="Hazard" Margin="0,0,8,198.116" VerticalAlignment="Bottom" Click="btn_hazard_Click" HorizontalAlignment="Right" Width="91" />
+    	</Grid>
+    	<Grid x:Name="grid_path" HorizontalAlignment="Right" Margin="0,0,-37.358,172" Width="256" Background="#FF64EDE4">
+    		<TextBlock HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="24"><Run Language="en-gb" Text="Path"/></TextBlock>
+    		<Image x:Name="img_path" Margin="8,31.923,0,228.077" HorizontalAlignment="Left" Width="240" Stretch="Fill"/>
+    		<Button x:Name="btn_path" Content="Path" Margin="0,0,8,202.117" VerticalAlignment="Bottom" Click="btn_path_Click" HorizontalAlignment="Right" Width="74.5" />
+    	</Grid>
     </Grid>
 </Window>
